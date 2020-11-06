@@ -1,14 +1,14 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import Eventlistitem from "./eventlistitem";
 
 class Eventlist extends Component {
   render() {
     return (
-      <div>
-        <Eventlistitem />
-        <Eventlistitem />
-        <Eventlistitem />
-      </div>
+      <Fragment>
+        {this.props.events.map((event) => (
+          <Eventlistitem key={event.id} event={event} />
+        ))}
+      </Fragment>
     );
   }
 }

@@ -3,21 +3,18 @@ import { Segment, Item, Icon, List, Button } from "semantic-ui-react";
 import Eventlistattendee from "./eventlistattendee";
 class Eventlistitem extends Component {
   render() {
+    const { event } = this.props;
     return (
       <div>
         <Segment.Group>
           <Segment>
             <Item.Group>
               <Item>
-                <Item.Image
-                  size="tiny"
-                  circular
-                  src="https://randomuser.me/api/portraits/women/42.jpg"
-                />
+                <Item.Image size="tiny" circular src={event.hostPhotoURL} />
                 <Item.Content>
-                  <Item.Header as="a">Event Title</Item.Header>
+                  <Item.Header as="a">{event.title}</Item.Header>
                   <Item.Description>
-                    Hosted by <a href="https://#">hosted by</a>
+                    Hosted by <a>{event.hostedby} </a>
                   </Item.Description>
                 </Item.Content>
               </Item>
@@ -25,22 +22,19 @@ class Eventlistitem extends Component {
           </Segment>
           <Segment>
             <span>
-              <Icon name="clock" /> date |
-              <Icon name="marker" /> time
+              <Icon name="clock" /> {event.date} |
+              <Icon name="marker" /> {event.venue}
             </span>
           </Segment>
           <Segment secondary>
             <List horizontal>
-              <List.Item>
-                <Eventlistattendee />
-              </List.Item>
-              <List.Item>
-                <Eventlistattendee />
-              </List.Item>
+              {event.attendees.map((attendee) => (
+                <Eventlistattendee key={attendee.id} attendee={attendee} />
+              ))}
             </List>
           </Segment>
           <Segment clearing>
-            <span>Description will come here</span>
+            <span>{event.description}</span>
             <Button as="a" color="teal" floated="right" content="View" />
           </Segment>
         </Segment.Group>
