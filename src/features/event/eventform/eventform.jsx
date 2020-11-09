@@ -1,14 +1,19 @@
 import React, { Component } from "react";
 import { Segment, Form, Button } from "semantic-ui-react";
 class Eventform extends Component {
+  handleOnSumbit = (evt) => {
+    evt.preventDefault();
+    console.log(this.ref.title.value);
+  };
+
   render() {
     const { cancelFormOpen } = this.props;
     return (
       <Segment>
-        <Form>
+        <Form onSubmit={this.handleOnSumbit}>
           <Form.Field>
             <label>Event Title</label>
-            <input placeholder="First Name" />
+            <input ref="title" placeholder="Event Title" />
           </Form.Field>
           <Form.Field>
             <label>Event Date</label>
