@@ -11,7 +11,7 @@ class Eventform extends Component {
 
   handleOnSumbit = (evt) => {
     evt.preventDefault();
-    console.log(this.state);
+    this.props.createEvent(this.state);
   };
 
   handleInputChange = ({ target: { name, value } }) => {
