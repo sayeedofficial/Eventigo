@@ -61,11 +61,11 @@ class EventDashboard extends Component {
     isOpen: false,
     selectedEvent: null,
   };
-  handleFormOpenToggle = () => {
-    this.setState(({ isOpen }) => ({
-      isOpen: !isOpen,
-    }));
-  };
+  // handleFormOpenToggle = () => {
+  //   this.setState(({ isOpen }) => ({
+  //     isOpen: !isOpen,
+  //   }));
+  // };
 
   handleCreateFormOpen = () => {
     this.setState({
@@ -79,7 +79,7 @@ class EventDashboard extends Component {
     });
   };
 
-  handleNewEvent = (newEvent) => {
+  handleCreateEvent = (newEvent) => {
     newEvent.id = cuid();
     newEvent.hostPhotoURL = "/assets/user.png";
     this.setState(({ events }) => ({
@@ -88,7 +88,7 @@ class EventDashboard extends Component {
     }));
   };
 
-  handleSelectEvent = (event) => {
+  handleSelectEvent = (evt,event) => {
     this.setState({
       selectedEvent: event,
       isOpen: true,
@@ -100,7 +100,7 @@ class EventDashboard extends Component {
     return (
       <Grid>
         <Grid.Column width={10}>
-          <Eventlist events={events} selectedEvent={this.handleSelectEvent} />
+          <Eventlist events={events} selectEvent={this.handleSelectEvent} />
         </Grid.Column>
         <Grid.Column width={6}>
           <Button
@@ -112,7 +112,7 @@ class EventDashboard extends Component {
           {isOpen && (
             <Eventform
               selectedEvent={selectedEvent}
-              createEvent={this.handleNewEvent}
+              createEvent={this.handleCreateEvent}
               cancelFormOpen={this.handleFormCancel}
             />
           )}
