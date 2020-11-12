@@ -59,36 +59,63 @@ class EventDashboard extends Component {
   state = {
     events: eventsfromdashboard,
     isOpen: false,
+    selectedEvent: null,
   };
   handleFormOpenToggle = () => {
     this.setState(({ isOpen }) => ({
       isOpen: !isOpen,
     }));
   };
+
+  handleCreateFormOpen = () => {
+    this.setState({
+      isOpen: true,
+      selectedEvent: null,
+    });
+  };
+  handleFormCancel = () => {
+    this.setState({
+      isOpen: false,
+    });
+  };
+
   handleNewEvent = (newEvent) => {
     newEvent.id = cuid();
     newEvent.hostPhotoURL = "/assets/user.png";
     this.setState(({ events }) => ({
       events: [...events, newEvent],
-      isOpen:false
+      isOpen: false,
     }));
   };
 
+  handleSelectEvent = (event) => {
+    this.setState({
+      selectedEvent: event,
+      isOpen: true,
+    });
+  };
+
   render() {
-    const { events, isOpen } = this.state;
+    const { events, isOpen, selectedEvent } = this.state;
     return (
       <Grid>
         <Grid.Column width={10}>
-          <Eventlist events={events} />
+          <Eventlist events={events} selectedEvent={this.handleSelectEvent} />
         </Grid.Column>
         <Grid.Column width={6}>
           <Button
-            onClick={this.handleFormOpenToggle}
+            onClick={this.handleCreateFormOpen}
             negative
             icon="play circle"
             content="Create Event"
           />
-          {isOpen && <Eventform createEvent={this.handleNewEvent} cancelFormOpen={this.handleFormOpenToggle} />}
+          {isOpen && (
+            <Eventform
+              selectedEvent={selectedEvent}
+              createEvent={this.handleNewEvent}
+              cancelFormOpen={this.handleFormCancel}
+            />
+          )}
         </Grid.Column>
       </Grid>
     );
