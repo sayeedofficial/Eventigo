@@ -3,15 +3,27 @@ import { Segment, Form, Button } from "semantic-ui-react";
 class Eventform extends Component {
   state = {
     title: " ",
-    date: "",
-    city: "",
+    date: " ",
+    city: " ",
     venue: " ",
     hostedBy: " ",
   };
 
+  componentDidMount() {
+    if (this.props.seletedEvent !== null) {
+      this.setState({
+        ...this.props.selectedEvent,
+      });
+    }
+  }
+
   handleOnSumbit = (evt) => {
     evt.preventDefault();
-    this.props.createEvent(this.state);
+    if (this.state.id) {
+      this.props.updateEvent(this.state);
+    } else {
+      this.props.createEvent(this.state);
+    }
   };
 
   handleInputChange = ({ target: { name, value } }) => {

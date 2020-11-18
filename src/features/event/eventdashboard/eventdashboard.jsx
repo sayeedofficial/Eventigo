@@ -8,7 +8,7 @@ const eventsfromdashboard = [
   {
     id: "1",
     title: "Trip to Tower of London",
-    date: "2018-03-27T11:00:00+00:00",
+    date: "2018-03-27",
     category: "culture",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.",
@@ -32,7 +32,7 @@ const eventsfromdashboard = [
   {
     id: "2",
     title: "Trip to Punch and Judy Pub",
-    date: "2018-03-28T14:00:00+00:00",
+    date: "2018-03-28",
     category: "drinks",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.",
@@ -61,11 +61,12 @@ class EventDashboard extends Component {
     isOpen: false,
     selectedEvent: null,
   };
-  // handleFormOpenToggle = () => {
-  //   this.setState(({ isOpen }) => ({
-  //     isOpen: !isOpen,
-  //   }));
-  // };
+
+  handleisOpenToggle = () => {
+    this.setState(({ isOpen }) => ({
+      isOpen: !isOpen,
+    }));
+  };
 
   handleCreateFormOpen = () => {
     this.setState({
@@ -88,11 +89,30 @@ class EventDashboard extends Component {
     }));
   };
 
-  handleSelectEvent = (evt,event) => {
+  handleSelectEvent = (event) => {
     this.setState({
       selectedEvent: event,
       isOpen: true,
     });
+  };
+
+  handleUpdateEvent = (updatedEvent) => {
+    this.setState(({ events }) => ({
+      events: events.map((event) => {
+        if (event.id === updatedEvent.id) {
+          return { ...updatedEvent };
+        } else {
+          return event;
+        }
+      }),
+      isOpen: false,
+    }));
+  };
+
+  handleDeleteEvent = (id) => {
+    this.setState(({ events }) => ({
+      events: events.filter((e) => e.id !== id),
+    }));
   };
 
   render() {
@@ -100,7 +120,7 @@ class EventDashboard extends Component {
     return (
       <Grid>
         <Grid.Column width={10}>
-          <Eventlist events={events} selectEvent={this.handleSelectEvent} />
+          <Eventlist  deleteEvent={this.handleDeleteEvent}  events={events} selectEvent={this.handleSelectEvent} />
         </Grid.Column>
         <Grid.Column width={6}>
           <Button
@@ -111,6 +131,8 @@ class EventDashboard extends Component {
           />
           {isOpen && (
             <Eventform
+              key={selectedEvent ? selectedEvent.id : 0}
+              updateEvent={this.handleUpdateEvent}
               selectedEvent={selectedEvent}
               createEvent={this.handleCreateEvent}
               cancelFormOpen={this.handleFormCancel}
