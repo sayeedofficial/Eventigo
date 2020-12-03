@@ -23,7 +23,7 @@ class App extends Component {
               <Navbar />
               <Container className="main">
                 <Route exact path="/" component={homepage} />
-                <Route path="/events" component={EventDashboard} />
+                <Route exact path="/events" component={EventDashboard} />
                 <Route path="/events/:id" component={eventdetailedpage} />
                 <Route path="/people" component={peopledashboard} />
                 <Route path="/profile/:id" component={userdetailed} />
