@@ -6,9 +6,10 @@ import { eventdetailedpage } from "../../features/event/eventdetailedpage/eventd
 import Eventform from "../../features/event/eventform/eventform";
 import { homepage } from "../../features/home/homepage";
 import Navbar from "../../features/navbar/navbar";
+import testcomponent from "../../features/testarea/testcomponent";
 import { peopledashboard } from "../../features/user/PeopleDashboard/peopledashboard";
 import { Settingsdashboard } from "../../features/user/settings/settingsdashboard";
-
+ 
 import { userdetailed } from "../../features/user/userdetailed/userdetailed";
 class App extends Component {
   render() {
@@ -28,6 +29,7 @@ class App extends Component {
                 <Route path="/profile/:id" component={userdetailed} />
                 <Route path="/settings" component={Settingsdashboard} />
                 <Route path="/createEvent" component={Eventform} />
+                <Route path="/test" component={testcomponent} />
               </Container>
             </Fragment>
           )}
