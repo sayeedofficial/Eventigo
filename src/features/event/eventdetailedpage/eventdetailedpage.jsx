@@ -4,6 +4,18 @@ import EventDetailedHeader from "./eventDetailedHeader";
 import EventDetailedChat from "./eventDetailedChats";
 import EventDetailedInfo from "./eventDetailedInfo";
 import EventDetailedSideBar from "./eventDetailedSideBar";
+import { connect } from "react-redux";
+
+const mapState = (state, ownProps) => {
+  const eventId = ownProps.match.params.id;
+  let event = {};
+  if (eventId && state.events.length > 0) {
+    event = state.events.filter((event) => event.id === eventId)[0];
+  }
+  return {
+    event,
+  };
+};
 
 const event = {
   id: "1",
@@ -30,7 +42,7 @@ const event = {
   ],
 };
 
-export const eventdetailedpage = () => {
+const eventdetailedpage = () => {
   return (
     <Grid>
       <Grid.Column width={10}>
@@ -44,3 +56,5 @@ export const eventdetailedpage = () => {
     </Grid>
   );
 };
+
+export default connect(mapState)(eventdetailedpage);
