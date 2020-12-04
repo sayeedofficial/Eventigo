@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Grid } from "semantic-ui-react";
 
 import Eventlist from "../evenlist/eventlist";
-import cuid from "cuid";
+
 import { connect } from "react-redux";
 import { createEvent, updateEvent, deleteEvent } from "../eventActions";
 const mapState = (state) => ({
@@ -39,14 +39,14 @@ class EventDashboard extends Component {
   //   });
   // };
 
-  handleCreateEvent = (newEvent) => {
-    newEvent.id = cuid();
-    newEvent.hostPhotoURL = "/assets/user.png";
-    this.props.createEvent(newEvent);
-    // this.setState(({ events }) => ({
-    //   isOpen: false,
-    // }));
-  };
+  // handleCreateEvent = (newEvent) => {
+  //   newEvent.id = cuid();
+  //   newEvent.hostPhotoURL = "/assets/user.png";
+  //   this.props.createEvent(newEvent);
+  //   // this.setState(({ events }) => ({
+  //   //   isOpen: false,
+  //   // }));
+  // };
 
   handleSelectEvent = (event) => {
     this.setState({
@@ -55,20 +55,20 @@ class EventDashboard extends Component {
     });
   };
 
-  handleUpdateEvent = (updatedEvent) => {
-    this.props.updateEvent(updatedEvent);
-    // this.setState(({ events }) => ({
-    // events: events.map((event) => {
-    //   if (event.id === updatedEvent.id) {
-    //     return { ...updatedEvent };
-    //   } else {
-    //     return event;
-    //   }
-    // }),
-    //   isOpen: false,
-    //   selectedEvent: null,
-    // }));
-  };
+  // handleUpdateEvent = (updatedEvent) => {
+  //   this.props.updateEvent(updatedEvent);
+  //   // this.setState(({ events }) => ({
+  //   // events: events.map((event) => {
+  //   //   if (event.id === updatedEvent.id) {
+  //   //     return { ...updatedEvent };
+  //   //   } else {
+  //   //     return event;
+  //   //   }
+  //   // }),
+  //   //   isOpen: false,
+  //   //   selectedEvent: null,
+  //   // }));
+  // };
 
   handleDeleteEvent = (id) => {
     // this.setState(({ events }) => ({
