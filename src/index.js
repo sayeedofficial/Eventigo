@@ -9,7 +9,7 @@ import { configureStore } from "./app/store/configstore";
 import Scrolltotop from "./app/common/util/scrolltotop";
 
 const store = configureStore();
-console.log(store.getState());
+
 
 ReactDOM.render(
   <Provider store={store}>
