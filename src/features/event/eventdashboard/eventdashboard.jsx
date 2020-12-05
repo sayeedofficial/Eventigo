@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { Grid } from "semantic-ui-react";
-
 import Eventlist from "../evenlist/eventlist";
-
 import { connect } from "react-redux";
 import { createEvent, updateEvent, deleteEvent } from "../eventActions";
 const mapState = (state) => ({
