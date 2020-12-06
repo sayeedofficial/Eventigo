@@ -22,7 +22,7 @@ class App extends Component {
             <Fragment>
               <Navbar />
               <Container className="main">
-                <Switch>
+                <Switch key={this.props.location.key}>
                   <Route exact path="/" component={homepage} />
                   <Route exact path="/events" component={EventDashboard} />
                   <Route path="/events/:id" component={eventdetailedpage} />

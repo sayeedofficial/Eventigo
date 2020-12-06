@@ -3,14 +3,15 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Segment, Form, Button } from "semantic-ui-react";
 import { createEvent, updateEvent } from "../eventActions";
+
 const mapState = (state, ownProps) => {
   const eventId = ownProps.match.params.id;
   let event = {
-    title: "",
-    date: "",
-    city: "",
-    venue: "",
-    hostedBy: "",
+    title: " ",
+    date: " ",
+    city: " ",
+    venue: " ",
+    hostedBy: " ",
   };
   if (eventId && state.events.length > 0) {
     event = state.events.filter((event) => event.id === eventId)[0];
@@ -44,7 +45,7 @@ class Eventform extends Component {
       const newEvent = {
         ...this.state,
         id: cuid(),
-        hostPhotoURL: `/assets/user.png`,
+        hostPhotoURL: "/assets/user.png",
       };
       this.props.createEvent(newEvent);
       this.props.history.push(`/events`);

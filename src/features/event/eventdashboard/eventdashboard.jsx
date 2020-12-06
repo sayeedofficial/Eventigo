@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { Grid } from "semantic-ui-react";
-
 import Eventlist from "../evenlist/eventlist";
-
 import { connect } from "react-redux";
 import { createEvent, updateEvent, deleteEvent } from "../eventActions";
 const mapState = (state) => ({
@@ -42,11 +40,10 @@ class EventDashboard extends Component {
   // handleCreateEvent = (newEvent) => {
   //   newEvent.id = cuid();
   //   newEvent.hostPhotoURL = "/assets/user.png";
-  // this.props.createEvent(newEvent);
-  // this.setState(({ events }) => ({
-  //   isOpen: false,
-  // }));
   //   this.props.createEvent(newEvent);
+  //   // this.setState(({ events }) => ({
+  //   //   isOpen: false,
+  //   // }));
   // };
 
   // handleSelectEvent = (event) => {
@@ -58,17 +55,17 @@ class EventDashboard extends Component {
 
   // handleUpdateEvent = (updatedEvent) => {
   //   this.props.updateEvent(updatedEvent);
-  // this.setState(({ events }) => ({
-  // events: events.map((event) => {
-  //   if (event.id === updatedEvent.id) {
-  //     return { ...updatedEvent };
-  //   } else {
-  //     return event;
-  //   }
-  // }),
-  //   isOpen: false,
-  //   selectedEvent: null,
-  // }));
+  //   // this.setState(({ events }) => ({
+  //   // events: events.map((event) => {
+  //   //   if (event.id === updatedEvent.id) {
+  //   //     return { ...updatedEvent };
+  //   //   } else {
+  //   //     return event;
+  //   //   }
+  //   // }),
+  //   //   isOpen: false,
+  //   //   selectedEvent: null,
+  //   // }));
   // };
 
   handleDeleteEvent = (id) => {
@@ -79,11 +76,16 @@ class EventDashboard extends Component {
   };
 
   render() {
+    // const { isOpen, selectedEvent } = this.state;
     const { events } = this.props;
     return (
       <Grid>
         <Grid.Column width={10}>
-          <Eventlist deleteEvent={this.handleDeleteEvent} events={events} />
+          <Eventlist
+            deleteEvent={this.handleDeleteEvent}
+            events={events}
+            // selectEvent={this.handleSelectEvent}
+          />
         </Grid.Column>
         <Grid.Column width={6}>
           <h2>Activity Feed</h2>
