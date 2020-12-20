@@ -6,3 +6,4 @@ import thunk from 'redux-thunk';
 export function configureStore() {
     return createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
 }
+
