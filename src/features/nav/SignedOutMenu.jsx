@@ -17,9 +17,6 @@ export default function SignedOutMenu({ setAuthenticated }) {
         onClick={() => dispatch(openModal({ modalType: "RegisterForm" }))}
         basic
         inverted
-        content="Login"
-        basic
-        inverted
         content="Register"
         style={{ marginLeft: "0.5em" }}
       />
