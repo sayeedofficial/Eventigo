@@ -17,7 +17,7 @@ import {
   updateEventInFirestore,
   addEventToFirestore,
   cancelEventToggle,
-} from '../../../app/firestore/firestoreService';
+} from '../../../app/firestore/firestoreservice';
 import useFirestoreDoc from '../../../app/hooks/useFirestoreDoc';
 import LoadingComponent from '../../../app/layout/LoadingComponent';
 import { toast } from 'react-toastify';

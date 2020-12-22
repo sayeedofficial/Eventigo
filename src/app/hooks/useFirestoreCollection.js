@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { asyncActionStart, asyncActionError, asyncActionFinish } from '../async/asyncReducer';
-import { dataFromSnapshot } from '../firestore/firestoreService';
+import { dataFromSnapshot } from '../firestore/firestoreservice';
 
 export default function useFirestoreCollection({query, data, deps}) {
     const dispatch = useDispatch();

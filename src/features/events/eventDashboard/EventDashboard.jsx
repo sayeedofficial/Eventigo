@@ -4,7 +4,7 @@ import EventList from './EventList';
 import { useSelector, useDispatch } from 'react-redux';
 import EventListItemPlaceholder from './EventListItemPlaceholder';
 import EventFilters from './EventFilters';
-import { listenToEventsFromFirestore } from '../../../app/firestore/firestoreService';
+import { listenToEventsFromFirestore } from '../../../app/firestore/firestoreservice';
 import { listenToEvents } from '../eventActions';
 import useFirestoreCollection from '../../../app/hooks/useFirestoreCollection';
 
