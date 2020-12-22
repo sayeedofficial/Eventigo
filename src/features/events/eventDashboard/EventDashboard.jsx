@@ -9,6 +9,11 @@ import {
   getEventsFromFirestore,
 } from "../../../app/firestore/firestoreservice";
 import { listenToEvents } from "../eventActions";
+import {
+  asyncActionError,
+  asyncActionFinish,
+  asyncActionStart,
+} from "../../../app/async/asyncReducer";
 
 export default function EventDashboard() {
   const dispatch = useDispatch();
@@ -16,17 +21,21 @@ export default function EventDashboard() {
   const { events } = useSelector((state) => state.event);
   const { loading } = useSelector((state) => state.async);
   useEffect(() => {
+    dispatch(asyncActionStart());
     const unsubsribe = getEventsFromFirestore({
-      next: (snapshot) =>
+      next: (snapshot) => {
         dispatch(
           listenToEvents(
             snapshot.docs.map((docSnapshot) => dataFromSnapshot(docSnapshot))
           )
-        ),
-      error: (error) => console.log(error),
+        );
+        dispatch(asyncActionFinish());
+      },
+
+      error: (error) => dispatch(asyncActionError(error)),
     });
     return unsubsribe;
-  });
+  }, [dispatch]);
   return (
     <Grid>
       <Grid.Column width={10}>
