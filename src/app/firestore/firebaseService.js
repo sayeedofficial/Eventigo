@@ -1,6 +1,6 @@
-import { toast } from "react-toastify";
-import firebase from "../config/firebase";
-import { setUserProfileData } from "./firestoreservice";
+import firebase from '../config/firebase';
+import { setUserProfileData } from './firestoreService';
+import { toast } from 'react-toastify';
 
 export function signInWithEmail(creds) {
   return firebase
@@ -8,7 +8,7 @@ export function signInWithEmail(creds) {
     .signInWithEmailAndPassword(creds.email, creds.password);
 }
 
-export function signOutFirebase(creds) {
+export function signOutFirebase() {
   return firebase.auth().signOut();
 }
 
@@ -20,7 +20,7 @@ export async function registerInFirebase(creds) {
     await result.user.updateProfile({
       displayName: creds.displayName,
     });
-    await setUserProfileData(result.user);
+    return await setUserProfileData(result.user);
   } catch (error) {
     throw error;
   }
@@ -28,10 +28,10 @@ export async function registerInFirebase(creds) {
 
 export async function socialLogin(selectedProvider) {
   let provider;
-  if (selectedProvider === "facebook") {
+  if (selectedProvider === 'facebook') {
     provider = new firebase.auth.FacebookAuthProvider();
   }
-  if (selectedProvider === "google") {
+  if (selectedProvider === 'google') {
     provider = new firebase.auth.GoogleAuthProvider();
   }
   try {
@@ -43,4 +43,9 @@ export async function socialLogin(selectedProvider) {
   } catch (error) {
     toast.error(error.message);
   }
+}
+
+export function updateUserPassword(creds) {
+  const user = firebase.auth().currentUser;
+  return user.updatePassword(creds.newPassword1);
 }
